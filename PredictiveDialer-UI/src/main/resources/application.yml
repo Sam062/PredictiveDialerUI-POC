@@ -1,0 +1,21 @@
+server:
+  port: 9695
+spring:
+  banner:
+    location: classpath:DialerBanner.txt
+  mvc:
+    view:
+      prefix: /views/
+      suffix: .jsp
+  datasource:
+    url: jdbc:mysql://localhost:3306/dialer
+    #driver-class-name: com.mysql.jdbc.Driver Internally Available, Not required
+    username: root
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        show_sql: false #Used to display sql in console.
+        format_sql: false #Used to display beautified sql in console.
+        hbm2ddl.auto: update
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
