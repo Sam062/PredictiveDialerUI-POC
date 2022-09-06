@@ -19,6 +19,9 @@ public class DialerDataEntity {
 
 	private String email;
 
+	@Column(name = "CNTRY_CD")
+	private String countryCode;
+
 	@Column(name = "MBLE_1")
 	private String mobile1;
 
@@ -31,21 +34,33 @@ public class DialerDataEntity {
 
 	private String status;
 
+	private Integer contactListId;
+
 	public DialerDataEntity() {
 		super();
 	}
 
-	public DialerDataEntity(Integer dialerId, String name, String email, String mobile1, String mobile2, String zip,
-			Integer priority, String status) {
+	public DialerDataEntity(Integer dialerId, String name, String email, String countryCode, String mobile1,
+			String mobile2, String zip, Integer priority, String status, Integer contactListId) {
 		super();
 		this.dialerId = dialerId;
 		this.name = name;
 		this.email = email;
+		this.countryCode = countryCode;
 		this.mobile1 = mobile1;
 		this.mobile2 = mobile2;
 		this.zip = zip;
 		this.priority = priority;
 		this.status = status;
+		this.contactListId = contactListId;
+	}
+
+	public Integer getContactListId() {
+		return contactListId;
+	}
+
+	public void setContactListId(Integer contactListId) {
+		this.contactListId = contactListId;
 	}
 
 	public Integer getDialerId() {
@@ -112,10 +127,19 @@ public class DialerDataEntity {
 		this.status = status;
 	}
 
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
+
 	@Override
 	public String toString() {
-		return "DialerDataEntity [dialerId=" + dialerId + ", name=" + name + ", email=" + email + ", mobile1=" + mobile1
-				+ ", mobile2=" + mobile2 + ", zip=" + zip + ", priority=" + priority + ", status=" + status + "]";
+		return "DialerDataEntity [dialerId=" + dialerId + ", name=" + name + ", email=" + email + ", countryCode="
+				+ countryCode + ", mobile1=" + mobile1 + ", mobile2=" + mobile2 + ", zip=" + zip + ", priority="
+				+ priority + ", status=" + status + ", contactListId=" + contactListId + "]";
 	}
 
 }

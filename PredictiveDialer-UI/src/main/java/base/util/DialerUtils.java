@@ -25,8 +25,8 @@ public class DialerUtils {
 
 			ArrayList<DialerData> dataList = new ArrayList<>();
 			for (CSVRecord csvRecord : csvRecords) {
-				DialerData data = new DialerData(csvRecord.get(0), csvRecord.get(1), csvRecord.get(2), csvRecord.get(3),
-						csvRecord.get(4), Integer.valueOf(csvRecord.get(5)), csvRecord.get(6));
+				DialerData data = new DialerData(null,csvRecord.get(0), csvRecord.get(1), csvRecord.get(2), csvRecord.get(3), csvRecord.get(4),
+						csvRecord.get(5), Integer.valueOf(csvRecord.get(6)), csvRecord.get(7));
 				dataList.add(data);
 			}
 			return dataList;

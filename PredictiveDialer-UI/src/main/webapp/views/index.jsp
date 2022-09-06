@@ -63,17 +63,17 @@
 						<tr>
 							<td>${list.name}</td>
 							<td>${list.email}</td>
-							<td>${list.mobile1}</td>
-							<td>${list.mobile2}</td>
+							<td>${list.countryCode}${list.mobile1}</td>
+							<td>${list.countryCode}${list.mobile2}</td>
 							<td>${list.zip}</td>
 							<td>${list.priority}</td>
-							<td>${list.status}</td>
+							<td id="${list.mobile1}">${list.status}</td>
 							<td>
 								<button class="btn btn-sm"
 									onclick="callerInfo('${list.name}','${list.email}','${list.mobile1}','${list.mobile2}', '${list.zip}', '${list.priority}', '${list.status}')">
 									<img src="../icons/InfoIcon.png" alt="InfoIcon" height=25" width="25">
 								</button>
-								<button class="btn btn-sm" onclick="dial('${list.name}')">
+								<button class="btn btn-sm" onclick="dial('${list.countryCode}','${list.mobile1}')">
 									<img src="../icons/Dial.png" alt="DialIcon" height="25" width="25">
 								</button>
 								<button class="btn btn-sm" onclick="hangup('${list.name}')">

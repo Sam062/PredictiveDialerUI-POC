@@ -2,8 +2,10 @@ package base.model;
 
 public class DialerData {
 
+	private Integer dialerId;
 	private String name;
 	private String email;
+	private String countryCode;
 	private String mobile1;
 	private String mobile2;
 	private String zip;
@@ -14,16 +16,26 @@ public class DialerData {
 		super();
 	}
 
-	public DialerData(String name, String email, String mobile1, String mobile2, String zip, Integer priority,
-			String status) {
+	public DialerData(Integer dialerId, String name, String email, String countryCode, String mobile1, String mobile2,
+			String zip, Integer priority, String status) {
 		super();
+		this.dialerId = dialerId;
 		this.name = name;
 		this.email = email;
+		this.countryCode = countryCode;
 		this.mobile1 = mobile1;
 		this.mobile2 = mobile2;
 		this.zip = zip;
 		this.priority = priority;
 		this.status = status;
+	}
+	
+	public Integer getDialerId() {
+		return dialerId;
+	}
+
+	public void setDialerId(Integer dialerId) {
+		this.dialerId = dialerId;
 	}
 
 	public String getName() {
@@ -40,6 +52,14 @@ public class DialerData {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
 	}
 
 	public String getMobile1() {
@@ -82,9 +102,4 @@ public class DialerData {
 		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "DialerData [name=" + name + ", email=" + email + ", mobile1=" + mobile1 + ", mobile2=" + mobile2
-				+ ", zip=" + zip + ", priority=" + priority + ", status=" + status + "]";
-	}
 }

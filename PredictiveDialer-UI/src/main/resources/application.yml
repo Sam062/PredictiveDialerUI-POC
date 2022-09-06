@@ -3,19 +3,31 @@ server:
 spring:
   banner:
     location: classpath:DialerBanner.txt
+  datasource:
+    password: root
+    url: jdbc:mysql://localhost:3306/dialer
+    username: root
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: true
+        hbm2ddl:
+          auto: update
+        show_sql: false
   mvc:
     view:
       prefix: /views/
       suffix: .jsp
-  datasource:
-    url: jdbc:mysql://localhost:3306/dialer
-    #driver-class-name: com.mysql.jdbc.Driver Internally Available, Not required
-    username: root
-    password: root
-  jpa:
-    properties:
-      hibernate:
-        show_sql: false #Used to display sql in console.
-        format_sql: false #Used to display beautified sql in console.
-        hbm2ddl.auto: update
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  
+            
+            
+#Zing props
+zing:
+  authToken: e2f1c3a7984d49b7b21b39fdb92b0934
+  fromNumber: '+18477871945'
+  hideCallerId: false
+  sid: AC777c3e3273a9f4b188f44fecba72d1d6
+  statusCallbackUrl: https://78eb-2406-b400-d1-a94a-30e2-7f89-22b7-bc8c.in.ngrok.io/
+  timeout: 30
+  url: https://zang.io/ivr/welcome/call

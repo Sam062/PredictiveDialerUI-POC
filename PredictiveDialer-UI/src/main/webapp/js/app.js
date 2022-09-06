@@ -38,22 +38,32 @@ function hideImportButton() {
 function callerInfo(name, email, mobile1, mobile2, zip, priority, status) {
     alert('USER DETAILS');
 }
-function dial(number) {
-    alert('Dialing...' + number);
-
-    $.ajax({
-        url: 'http://localhost:9695/handledial?name=' + name,
-        type: "GET",
-        crossDomain: true,
-        success: function (response) {
-            alert("Success Response :: " + response);
-        }, failure: function (response) {
-            alert("Failure Response :: " + response);
+function dial(countryCode, number1) {
+    if (number1.length >= 10) {
+        if (confirm("Are you sure you want to dial " + number1 + "?")) {
+            $.ajax({
+                url: 'http://localhost:9695/handledial?number=' + number1 + "&&countryCode=" + encodeURIComponent(countryCode),
+                type: "GET",
+                crossDomain: true,
+                success: function (response) {
+                    if (response.includes('successfully')) {
+                        document.getElementById(number1).innerHTML = "DIALED";
+                    } else {
+                        alert("Invalid Number.");
+                    }
+                }, failure: function (response) {
+                    alert("Failure Response :: " + response);
+                }
+            });
+        } else {
+            alert('Dial cancelled.');
         }
-    });
+    } else {
+        alert('Not a valid number');
+    }
 }
-function hangup(number) {
-    alert('Hanging Up...' + number);
+function hangup(name) {
+    alert('Hanging Up...' + name);
 
     $.ajax({
         url: 'http://localhost:9695/hangup?name=' + name,
