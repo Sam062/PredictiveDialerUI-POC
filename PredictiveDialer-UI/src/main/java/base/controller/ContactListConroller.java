@@ -33,7 +33,7 @@ public class ContactListConroller {
 		List<ContactList> contList = contactListService.getAllContactLists();
 		System.out.println("getAllCampaigns() returning :: " + contList);
 
-		Collections.sort(contList, (a,b)->b.getCreatedDate().compareTo(a.getCreatedDate()));
+		Collections.sort(contList, (a, b) -> b.getCreatedDate().compareTo(a.getCreatedDate()));
 		if (contList != null)
 			return new ResponseEntity<List<ContactList>>(contList, HttpStatus.OK);
 		else
@@ -76,7 +76,6 @@ public class ContactListConroller {
 			return new ResponseEntity<List<ContactDetails>>(contactDetailsList, HttpStatus.OK);
 		else
 			return new ResponseEntity<List<ContactDetails>>(contactDetailsList, HttpStatus.BAD_REQUEST);
-
 	}
 
 	@PostMapping("/saveOrUpdateContactDetails")

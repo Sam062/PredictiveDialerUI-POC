@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,21 +44,29 @@ public class DialerController {
 		return "Dashboard";
 	}
 
-	@GetMapping(value = { "/getDialerData" })
+	@GetMapping(value = { "/getDialerData/{contactListId}/{listName}" })
 	@ResponseBody
-	public ResponseEntity<List<DialerData>> dialerDataPage(Model model) {
-		List<DialerData> list = service.getAllDialerData();
+	public ResponseEntity<List<DialerData>> dialerDataPage(@PathVariable("contactListId") Integer contactListId,
+			@PathVariable("listName") String listName) {
+		System.out.println("================ ");
+		System.out.println("Contact List ID -->> " + contactListId);
+		System.out.println("List Name -->> " + listName);
+		System.out.println("================ ");
+
+		List<DialerData> list = service.getAllDialerData(contactListId, listName);
 		return new ResponseEntity<List<DialerData>>(list != null ? list : new ArrayList<>(), HttpStatus.OK);
 	}
 
 	@GetMapping("handledial")
 	@ResponseBody
-	public String dial(@RequestParam("countryCode") String countryCode, @RequestParam("number") String number) {
+	public String dial(@RequestParam("countryCode") String countryCode, @RequestParam("number") String number,
+			@RequestParam("contactListId") Integer contactListId) {
 		log.info("Request to dial :" + countryCode + number);
 		try {
 			zingDial.dial(countryCode, number);
 
-			DialerData dialerData = service.findByMobile1(number);
+			DialerData dialerData = service.findByMobile1AndContactListId(number, contactListId);
+			System.out.println("+++ Updating dial status for : "+dialerData);
 			if (dialerData != null) {
 				dialerData.setStatus(DialerConstants.DIALED);
 				try {
@@ -84,9 +91,8 @@ public class DialerController {
 
 	@PostMapping("/importcsvdata/{contactList}")
 	@ResponseBody
-	public ResponseEntity<String> inportData(@RequestParam("file") MultipartFile[] file
-			,@PathVariable("contactList") String contactList
-			) {
+	public ResponseEntity<String> inportData(@RequestParam("file") MultipartFile[] file,
+			@PathVariable("contactList") String contactList) {
 		log.info("FILE NAME-> " + file[0].getOriginalFilename());
 		log.info("Associated Contact List -> " + contactList);
 
@@ -111,7 +117,7 @@ public class DialerController {
 //		return "redirect:/welcome";
 	}
 
-	@GetMapping("/demo")
+	@GetMapping("/getDialStatus")
 	public void statusCallback(HttpServletRequest req) {
 		log.info("INSIDE CALLBACk======================="
 //	+req.getQueryString()

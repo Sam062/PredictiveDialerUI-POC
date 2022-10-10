@@ -28,6 +28,6 @@ zing:
   fromNumber: '+18477871945'
   hideCallerId: false
   sid: AC777c3e3273a9f4b188f44fecba72d1d6
-  statusCallbackUrl: https://78eb-2406-b400-d1-a94a-30e2-7f89-22b7-bc8c.in.ngrok.io/
+  statusCallbackUrl: https://c00f-2405-201-6005-fdcc-608f-7fdc-879e-83cb.in.ngrok.io/
   timeout: 30
   url: https://zang.io/ivr/welcome/call

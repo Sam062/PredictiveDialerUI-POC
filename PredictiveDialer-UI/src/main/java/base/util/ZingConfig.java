@@ -52,7 +52,7 @@ public class ZingConfig {
 		MakeCallParams makeCallParams = MakeCallParams.builder().setTo(countryCode + number).setFrom(fromNumber)
 				.setUrl(url).setMethod(HttpMethod.GET)
 				.setStatusCallbackMethod(HttpMethod.GET)
-				.setStatusCallback(statusCallbackUrl+"demo")
+				.setStatusCallback(statusCallbackUrl+"getDialStatus")
 				/*
 				 * .setFallbackUrl("FallbackUrl") .setFallbackMethod(HttpMethod.POST)
 				 * .setStatusCallback("StatusCallback") 

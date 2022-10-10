@@ -55,11 +55,11 @@ public class DialerService {
 		return false;
 	}
 
-	public List<DialerData> getAllDialerData() {
+	public List<DialerData> getAllDialerData(Integer contactListId, String listName) {
 		List<DialerData> dialerModelList = null;
 
 		try {
-			List<DialerDataEntity> entityList = repo.findAll();
+			List<DialerDataEntity> entityList = repo.findByContactListId(contactListId);
 			if (entityList != null && entityList.size() > 0) {
 				dialerModelList = entityList.stream().map(entity -> {
 					DialerData dialerModel = new DialerData();
@@ -80,8 +80,8 @@ public class DialerService {
 		return dialerModelList;
 	}
 
-	public DialerData findByMobile1(String number) {
-		DialerDataEntity data = repo.findByMobile1(number);
+	public DialerData findByMobile1AndContactListId(String number, Integer contactListId) {
+		DialerDataEntity data = repo.findByMobile1AndContactListId(number, contactListId);
 		if (data != null) {
 			DialerData model = new DialerData();
 			BeanUtils.copyProperties(data, model);
